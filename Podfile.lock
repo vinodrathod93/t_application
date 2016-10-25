@@ -1,0 +1,25 @@
+PODS:
+  - JTAppleCalendar (5.0.1)
+  - JVFloatLabeledTextField (1.1.1)
+  - STPopup (1.8.1)
+  - StreamingKit (0.1.29)
+  - SWRevealViewController (2.3.0)
+  - TagListView (1.0.1)
+
+DEPENDENCIES:
+  - JTAppleCalendar
+  - JVFloatLabeledTextField
+  - STPopup
+  - StreamingKit (~> 0.1)
+  - SWRevealViewController
+  - TagListView (~> 1.0)
+
+SPEC CHECKSUMS:
+  JTAppleCalendar: cb2417b1f3367d1993e31720a663646742139a5c
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
+  STPopup: 47e8ae53d348fa5f9be2d08d5c513ebe12ca758d
+  StreamingKit: c329785aaef3ac142d4ae388345bfe1ed23cfd45
+  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
+  TagListView: cd871de4ab3ae4c4c67a2e67f6503ea6fc55c2a6
+
+COCOAPODS: 0.39.0
