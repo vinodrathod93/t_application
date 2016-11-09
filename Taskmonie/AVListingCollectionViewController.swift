@@ -8,6 +8,8 @@
 
 import UIKit
 import STPopup
+import Alamofire
+import AVFoundation
 
 private let reuseIdentifier = "AudioVideoCellIdentifier"
 
@@ -15,20 +17,61 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
     
     
     var isAudio: Bool = false
-    
+    var avArray: NSArray = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-//        self.collectionView!.registerClass(AVCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
         
         navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: UIBarButtonItemStyle.Plain, target: nil, action: nil)
         // Do any additional setup after loading the view.
+        
+        
+        let indicatorView   =   UIActivityIndicatorView.init(activityIndicatorStyle: .WhiteLarge)
+        indicatorView.center    =   self.view.center
+        indicatorView.startAnimating()
+        indicatorView.hidesWhenStopped = true
+        self.view.addSubview(indicatorView)
+        
+        let urlString: String
+        
+        if isAudio {
+            urlString = "http://ec2-52-66-131-85.ap-south-1.compute.amazonaws.com/api/tasks/all/audio_clip"
+        }
+        else {
+            urlString = "http://ec2-52-66-131-85.ap-south-1.compute.amazonaws.com/api/tasks/all/video_clip"
+        }
+        
+        
+        Alamofire.request(.GET, urlString, parameters: ["api_token":"3243480952"], encoding: .URL, headers: nil).responseJSON { (response) in
+            
+            indicatorView.stopAnimating()
+            
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                print(JSON["data"])
+                
+                if let tempArray = JSON["data"] as? NSArray {
+                    
+                    self.avArray = tempArray
+                    
+                    self.collectionView?.reloadData()
+                }
+//                avArray = JSON["data"]
+//
+//                self.tableView.reloadData()
+            }
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,27 +79,18 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        
         return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 5
+        
+        return avArray.count
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -65,11 +99,42 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
         if isAudio {
             cell?.playButton.setImage(UIImage.init(named: "music_clip"), forState: UIControlState.Normal)
         }
+        else {
+            let dictionary = avArray[indexPath.item]
+            
+            if let brand_name = dictionary["brand_name"] as? String {
+                cell?.ContentName.text  =   brand_name
+            }
+            
+            if let duration = dictionary.valueForKeyPath("meta.video_clip_duration") as? String {
+                cell?.durationLabel.text    =   "Duration:\(duration) seconds"
+            }
+            
+            
+            if let reward = dictionary.valueForKeyPath("meta.video_clip_reward") as? String {
+                cell?.contentEarningAmount.text = convertToRupees(reward)
+            }
+            
+            if let validity = dictionary.valueForKeyPath("meta.launch_to") as? String {
+                cell?.validityLabel.text    =   validity
+            }
+            
+            
+            
+//            if let videoURL = dictionary.valueForKeyPath("meta.file") as? String {
+//                
+//                let image   =   thumbnail(sourceURL: NSURL.init(string: videoURL)!)
+//                print(image)
+//                
+//                cell?.PreviewImageView.image = image
+//            }
+            
+            
+        }
         // Configure the cell
         
         cell!.detailButton.addTarget(self, action: #selector(detailButtonTapped(_:)), forControlEvents: .TouchUpInside)
         
-        cell?.contentEarningAmount.text = convertToRupees("5")
         
     
         return cell!
@@ -87,6 +152,25 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
         popupView.presentInViewController(self)
         
     }
+    
+    
+    func thumbnail(sourceURL sourceURL:NSURL) -> UIImage {
+        let asset = AVAsset(URL: sourceURL)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+        
+        let time = CMTimeMake(1, 30)
+        
+        do {
+            let imageRef = try imageGenerator.copyCGImageAtTime(time, actualTime: nil)
+            return UIImage(CGImage: imageRef)
+        } catch {
+            print(error)
+            return UIImage(named: "some generic thumbnail")!
+        }
+    }
+    
+    
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         return CGSize.init(width: self.view.frame.size.width, height: 150)
@@ -96,9 +180,27 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
 
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let playerVC    =   (isAudio) ? AudioPlayerViewController() : VideoPlayerViewController()
         
-        self.navigationController?.pushViewController(playerVC, animated: true)
+        let dictionary = avArray[indexPath.item]
+        
+        let urlString   =   dictionary.valueForKeyPath("meta.file") as? String
+        
+//        let playerVC    =   (isAudio) ? AudioPlayerViewController() : VideoPlayerViewController()
+//        playerVC.url
+        
+        if isAudio {
+            let audioPlayerVC   =   AudioPlayerViewController()
+            audioPlayerVC.urlString =   urlString!
+            self.navigationController?.pushViewController(audioPlayerVC, animated: true)
+        }
+        else {
+            let videoPlayerVC   =   VideoPlayerViewController()
+            videoPlayerVC.urlString =   urlString!
+            self.navigationController?.pushViewController(videoPlayerVC, animated: true)
+        }
+        
+        
+        
     }
     
     

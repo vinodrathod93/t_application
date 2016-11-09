@@ -16,7 +16,9 @@ class AVCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var detailButton: UIButton!
     
+    @IBOutlet weak var durationLabel: UILabel!
     
+    @IBOutlet weak var validityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

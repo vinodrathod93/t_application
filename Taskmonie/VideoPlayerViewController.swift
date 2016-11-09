@@ -21,6 +21,9 @@ class VideoPlayerViewController: UIViewController {
     var timeObserver: AnyObject!
     let timeRemainingLabel = UILabel()
     let progressBar = UIProgressView()
+    let bufferBar   =   UIProgressView()
+    
+    var urlString: String = ""
     
     
 //    var playerRateBeforeSeek: Float = 0
@@ -36,7 +39,7 @@ class VideoPlayerViewController: UIViewController {
         invisibleButton.addTarget(self, action: #selector(invisibleButtonTapped),
                                   forControlEvents: .TouchUpInside)
         
-        let movieURL:NSURL? = NSURL(string: "http://techslides.com/demos/sample-videos/small.mp4")
+        let movieURL:NSURL? = NSURL(string: urlString)
         
         if let url = movieURL {
             
@@ -57,13 +60,18 @@ class VideoPlayerViewController: UIViewController {
         timeRemainingLabel.font         =   UIFont.systemFontOfSize(20, weight: UIFontWeightBold)
         view.addSubview(timeRemainingLabel)
         
+        bufferBar.progressTintColor =   UIColor.whiteColor()
+        bufferBar.trackTintColor    =   UIColor.clearColor()
+        view.addSubview(bufferBar)
         
+        progressBar.trackTintColor = UIColor.clearColor()
         view.addSubview(progressBar)
         
         loadingIndicatorView.hidesWhenStopped = true
         view.addSubview(loadingIndicatorView)
         avPlayer.addObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp",
                              options: .New, context: &playbackLikelyToKeepUpContext)
+        avPlayer.addObserver(self, forKeyPath: "currentItem.loadedTimeRanges", options: [.New, .Initial], context: nil)
         
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(VideoPlayerViewController.playerDidFinishPlaying(_:)),
@@ -73,47 +81,7 @@ class VideoPlayerViewController: UIViewController {
     }
     
     
-    
-    func playerDidFinishPlaying(note: NSNotification) {
-        print("Video Finished")
-        
-        avPlayerLayer.hidden    =   true
-        
-        
-        let buttonX     =   view.frame.width/2 - 60/2
-        let buttonY     =   view.frame.height/2 - 30/2
-        
-        
-        let doneButton = UIButton.init(frame: CGRect.init(x: buttonX, y: buttonY, width: 60, height: 30))
-        
-        doneButton.setTitle("DONE", forState: .Normal)
-        doneButton.layer.borderColor    =   UIColor.whiteColor().CGColor
-        doneButton.layer.borderWidth    =   0.5
-        doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), forControlEvents: .TouchUpInside)
-        view.addSubview(doneButton)
-        
-        
-    }
 
-    
-    
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
-                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        
-        if context == &playbackLikelyToKeepUpContext {
-            if avPlayer.currentItem!.playbackLikelyToKeepUp {
-                loadingIndicatorView.stopAnimating()
-            } else {
-                loadingIndicatorView.startAnimating()
-            }
-        }
-    }
-    
-    
-    deinit {
-        avPlayer.removeTimeObserver(timeObserver)
-        avPlayer.removeObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp")
-    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -147,6 +115,7 @@ class VideoPlayerViewController: UIViewController {
         
         
         progressBar.frame = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: controlsHeight)
+        bufferBar.frame     = CGRect(x: 0, y: 0, width: view.bounds.size.width, height: controlsHeight)
         
         loadingIndicatorView.center = CGPoint(x: CGRectGetMidX(view.bounds), y: CGRectGetMidY(view.bounds))
     }
@@ -154,6 +123,85 @@ class VideoPlayerViewController: UIViewController {
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.Landscape
     }
+    
+    
+    //MARK: Observer
+    
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?,
+                                         change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        
+        
+        
+        
+        if context == &playbackLikelyToKeepUpContext {
+            if avPlayer.currentItem!.playbackLikelyToKeepUp {
+                print("Playing. Means Not Buffering");
+                loadingIndicatorView.stopAnimating()
+            } else {
+                
+                print("Not Playing. Means Buffering");
+                loadingIndicatorView.startAnimating()
+                
+            }
+        }
+        
+        if keyPath == "currentItem.loadedTimeRanges" {
+            
+            bufferBar.progress  =   Float(CMTimeGetSeconds(self.availableDuration()))/Float(CMTimeGetSeconds((avPlayer.currentItem?.duration)!))
+            
+        }
+        
+        
+    }
+    
+    //MARK: Deinit
+    
+    deinit {
+        
+        avPlayer.removeObserver(self, forKeyPath: "currentItem.loadedTimeRanges")
+        avPlayer.removeTimeObserver(timeObserver)
+        avPlayer.removeObserver(self, forKeyPath: "currentItem.playbackLikelyToKeepUp")
+        
+    }
+    
+    
+    
+    
+    
+    
+    func availableDuration() -> CMTime
+    {
+        if let range = avPlayer.currentItem?.loadedTimeRanges.first {
+            return CMTimeRangeGetEnd(range.CMTimeRangeValue)
+        }
+        return kCMTimeZero
+    }
+    
+    
+    func playerDidFinishPlaying(note: NSNotification) {
+        print("Video Finished")
+        
+        avPlayerLayer.hidden    =   true
+        
+        
+        let buttonX     =   view.frame.width/2 - 60/2
+        let buttonY     =   view.frame.height/2 - 30/2
+        
+        
+        let doneButton = UIButton.init(frame: CGRect.init(x: buttonX, y: buttonY, width: 60, height: 30))
+        
+        doneButton.setTitle("DONE", forState: .Normal)
+        doneButton.layer.borderColor    =   UIColor.whiteColor().CGColor
+        doneButton.layer.borderWidth    =   0.5
+        doneButton.addTarget(self, action: #selector(doneButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        view.addSubview(doneButton)
+        
+        
+    }
+    
+    
+    
     
     
     func invisibleButtonTapped(sender: UIButton) {

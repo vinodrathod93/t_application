@@ -14,6 +14,8 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var timerLabel: UILabel!
     
+    var urlString: String = ""
+    
     let audioPlayer = STKAudioPlayer.init()
     
     
@@ -21,7 +23,7 @@ class AudioPlayerViewController: UIViewController {
         super.viewDidLoad()
         
         
-        audioPlayer.play("http://www.abstractpath.com/files/audiosamples/sample.mp3")
+        audioPlayer.play(urlString)
         
         
         

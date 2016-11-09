@@ -26,7 +26,7 @@ class WalletStatementViewController: UIViewController, UITableViewDelegate, UITa
 
         
         
-        let closeBarButtonItem = UIBarButtonItem.init(title: "Close", style: .Done, target: self, action: #selector(dismissVC))
+        let closeBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "close"), style: .Plain, target: self, action: #selector(dismissVC))
         
         navigationItem.leftBarButtonItem    =   closeBarButtonItem
         

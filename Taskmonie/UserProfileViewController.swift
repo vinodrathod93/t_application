@@ -13,6 +13,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var tableview: UITableView!
+
     
     var hobbiesArray: NSMutableArray = []
     var userSelectedIndex = 0
@@ -41,9 +42,15 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let closeBarButtonItem = UIBarButtonItem.init(title: "Close", style: .Done, target: self, action: #selector(dismissVC))
+        let closeBarButtonItem = UIBarButtonItem.init(image: UIImage.init(named: "close"), style: .Plain, target: self, action: #selector(dismissVC))
+        
+        let settingsImage   =   UIImageView.init(image: UIImage.init(named: "settings"))
+        settingsImage.frame =   CGRectMake(0, 0, 22, 22)
+        
+        let settingsBarButtonItem   =   UIBarButtonItem.init(customView: settingsImage)
         
         navigationItem.leftBarButtonItem    =   closeBarButtonItem
+        navigationItem.rightBarButtonItem   =   settingsBarButtonItem
         
         
         currentArray = mainArray[0]

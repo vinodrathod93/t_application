@@ -129,6 +129,11 @@ class HomeViewController: UITableViewController,iCarouselDataSource, iCarouselDe
             
             self.navigationController?.pushViewController(audiosVC!, animated: true)
         }
+        else if indexPath.row == 2 {
+            let surveyViewVC    =   self.storyboard?.instantiateViewControllerWithIdentifier("surveyViewVC") as! SurveyViewController
+            
+            self.navigationController?.pushViewController(surveyViewVC, animated: true)
+        }
     }
     
     

@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (3.5.1)
   - JTAppleCalendar (5.0.1)
   - JVFloatLabeledTextField (1.1.1)
   - STPopup (1.8.1)
@@ -7,6 +8,7 @@ PODS:
   - TagListView (1.0.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 3.5)
   - JTAppleCalendar
   - JVFloatLabeledTextField
   - STPopup
@@ -15,6 +17,7 @@ DEPENDENCIES:
   - TagListView (~> 1.0)
 
 SPEC CHECKSUMS:
+  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   JTAppleCalendar: cb2417b1f3367d1993e31720a663646742139a5c
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   STPopup: 47e8ae53d348fa5f9be2d08d5c513ebe12ca758d
