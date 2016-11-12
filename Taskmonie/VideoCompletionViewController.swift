@@ -23,6 +23,10 @@ class VideoCompletionViewController: UIViewController {
                 let index = tempVCs.indexOf(viewcontroller)
                 tempVCs.removeAtIndex(index!)
             }
+            else if viewcontroller.isKindOfClass(SurveyViewController) {
+                let index = tempVCs.indexOf(viewcontroller)
+                tempVCs.removeAtIndex(index!)
+            }
         }
         
         self.navigationController?.viewControllers = tempVCs

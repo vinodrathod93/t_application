@@ -17,7 +17,13 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     var singleSelectionTableView = UITableView()
+    var multiSelectionTableView = UITableView()
+    var movableTableView = UITableView()
+    var imageTableView = UITableView()
+    
     var sliderView = UIView()
+    
+    var multiSelectionData = NSArray()
     
     
     
@@ -25,6 +31,7 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
 
         self.title  =   "1/5"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem.init(title: "", style: .Plain, target: nil, action: nil)
         
         self.submitButton.layer.cornerRadius = 8.0
         self.submitButton.layer.borderColor = UIColor.init(red: 80/255.0, green: 255/255.0, blue: 39/255.0, alpha: 1.0).CGColor
@@ -35,11 +42,24 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.instrucitonLabel.hidden = true
         
         
+        multiSelectionData  =   ["Rock", "Jazz", "Pop", "Ghazal"]
         
         
+        
+        print(NSStringFromCGRect(self.contentView.frame))
+        self.contentView.backgroundColor    =   .clearColor()
+        self.contentView.layoutIfNeeded()
+        
+        print(NSStringFromCGRect(self.contentView.frame))
         
         singleSelectionView()
         sliderQuestionView()
+        multiSelectionView()
+        movableCellTableView()
+        imagedOptionsTableView()
+        
+        
+        self.disableSubmitButton()
         
     }
 
@@ -49,33 +69,21 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     
+    
+    
+    func enableSubmitButton() {
+        self.submitButton.layer.borderColor = UIColor.init(red: 80/255.0, green: 255/255.0, blue: 39/255.0, alpha: 1.0).CGColor
+        self.submitButton.enabled   =   true
+    }
+    
+    func disableSubmitButton() {
+        self.submitButton.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.submitButton.enabled   =   false
+    }
+    
+    
+    
     func nextButtonTapped() {
-        
-        /*
-         
-         viewObjB.alpha=1.0;
-         viewObjB.hidden=NO;
-         [UIView transitionWithView:viewObjB
-         duration:1.5
-         options:UIViewAnimationOptionTransitionFlipFromRight
-         animations:^{
-         viewObjB.hidden=YES;
-         viewObjB.alpha=0.0;
-         } completion:nil];
-         
-         viewObjC.alpha=0.0;
-         viewObjC.hidden=YES;
-         [UIView transitionWithView:viewObjC
-         duration:1.5
-         options:UIViewAnimationOptionTransitionFlipFromLeft
-         animations:^{
-         viewObjC.hidden=NO;
-         viewObjC.alpha=1.0;
-         } completion:nil];
- */
-        
-        self.title = "2/5"
-        
         
         
         let labelAnimation  =   CATransition.init()
@@ -86,32 +94,9 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         labelAnimation.type =   kCATransitionFade
         labelAnimation.fillMode =   kCAFillModeBoth
         labelAnimation.duration =   0.33
-        
         self.questionLabel.layer.addAnimation(labelAnimation, forKey: kCATransitionFade)
         
-        
-        self.questionLabel.text = "How Much would you rate us for our Marketing strategies."
-        
-        /*
-        UIView.transitionWithView(tableView, duration: 0.8, options: .TransitionFlipFromRight, animations: {
-            self.tableView.hidden = true
-            self.tableView.alpha = 0.0
-            }, completion: nil)
-        
-        
-        UIView.transitionWithView(sliderView, duration: 0.8, options: .TransitionFlipFromLeft, animations: {
-            self.sliderView.hidden = false
-            self.sliderView.alpha = 1.0
-            }, completion: nil)
-        */
-        
-        
-        
-        
-//        let filter  =   CIFilter.init(name: "CIBarsSwipeTransition")
-//        filter?.setValue(NSNumber(float: 3.14), forKey: "inputAngle")
-//        filter?.setValue(NSNumber(float: 30.0), forKey: "inputWidth")
-//        filter?.setValue(NSNumber(float: 10.0), forKey: "inputBarOffset")
+        self.instrucitonLabel.layer.addAnimation(labelAnimation, forKey: "instructionFadeAnimationTransition")
         
         
         let transition  =   CATransition.init()
@@ -123,16 +108,105 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         transition.subtype          =   kCATransitionFromRight
         transition.duration         =   0.4
         
-        self.singleSelectionTableView.layer.addAnimation(transition, forKey: kCATransitionPush)
         
-        self.singleSelectionTableView.hidden       =   true
-        self.singleSelectionTableView.alpha        =   0.0
+        if !singleSelectionTableView.hidden {
+            self.title = "2/5"
+            
+            self.questionLabel.text = "How Much would you rate us for our Marketing strategies."
+            
+            
+            
+            
+            
+            self.singleSelectionTableView.layer.addAnimation(transition, forKey: kCATransitionPush)
+            self.singleSelectionTableView.hidden       =   true
+            self.singleSelectionTableView.alpha        =   0.0
+            
+            
+            self.sliderView.layer.addAnimation(transition, forKey: kCATransitionPush)
+            self.sliderView.hidden  =   false
+            self.sliderView.alpha   =   1.0
+            
+            disableSubmitButton()
+            
+        }
+        else if !self.sliderView.hidden {
+            
+            
+            self.title = "3/5"
+            
+            self.questionLabel.text =   "What kind of music do you like?"
+            
+            
+            self.sliderView.layer.addAnimation(transition, forKey: "sliderViewDoneTransitionPush")
+            self.sliderView.hidden  =   true
+            self.sliderView.alpha   =   0.0
+            
+            self.multiSelectionTableView.layer.addAnimation(transition, forKey: "multiSelectionTransitionPush")
+            self.multiSelectionTableView.hidden       =   false
+            self.multiSelectionTableView.alpha        =   1.0
+            
+            self.multiSelectionTableView.frame =   CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.height)
+            disableSubmitButton()
+        }
+        else if !self.multiSelectionTableView.hidden {
+            
+            self.title = "4/5"
+            
+            self.questionLabel.text =   "Which Service on FreeCharge do you liked the most?"
+            
+            self.instrucitonLabel.text = "";
+            self.instrucitonLabel.hidden = false
+            self.instrucitonLabel.text  =   "Arrange your Choices in most preferred first order."
+            
+            
+            
+            self.multiSelectionTableView.layer.addAnimation(transition, forKey: "multiSelectionDoneTransitionPush")
+            self.multiSelectionTableView.hidden  =   true
+            self.multiSelectionTableView.alpha   =   0.0
+            
+            self.movableTableView.layer.addAnimation(transition, forKey: "movableTableViewTransitionPush")
+            self.movableTableView.hidden       =   false
+            self.movableTableView.alpha        =   1.0
+            
+            self.movableTableView.frame =   CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.height)
+            
+            disableSubmitButton()
+        }
+        else if !self.movableTableView.hidden {
+            self.title = "5/5"
+            
+            self.questionLabel.text =   "Which logo of FreeCharge do you liked the most?"
+            self.instrucitonLabel.text = nil
+            self.instrucitonLabel.hidden = true
+            
+            
+            self.movableTableView.layer.addAnimation(transition, forKey: "movableTableViewDoneTransitionPush")
+            self.movableTableView.hidden  =   true
+            self.movableTableView.alpha   =   0.0
+            
+            self.imageTableView.layer.addAnimation(transition, forKey: "imagedTableViewTransitionPush")
+            self.imageTableView.hidden       =   false
+            self.imageTableView.alpha        =   1.0
+            
+            
+            
+            
+            disableSubmitButton()
+            self.submitButton.setTitle("Submit", forState: .Normal)
+            
+            self.imageTableView.frame =   CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.height)
+            
 
+        }
+        else {
+            let sb = UIStoryboard(name: "Main", bundle: nil)
+            
+            let completeVC = sb.instantiateViewControllerWithIdentifier("videoCompletionVC") as! VideoCompletionViewController
+            
+            self.navigationController?.pushViewController(completeVC, animated: true)
+        }
         
-        self.sliderView.layer.addAnimation(transition, forKey: kCATransitionPush)
-        
-        self.sliderView.hidden  =   false
-        self.sliderView.alpha   =   1.0
         
         
         
@@ -151,6 +225,8 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         slider.maximumValue = 30
         slider.continuous = true
         slider.value = 0
+        
+        slider.addTarget(self, action: #selector(sliderChanged), forControlEvents: .ValueChanged)
         sliderView.addSubview(slider)
         
         
@@ -192,19 +268,86 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func singleSelectionView() {
         
         
-        
+        self.view.layoutIfNeeded()
         singleSelectionTableView   =   UITableView.init(frame: CGRectMake(0, 0, contentView.frame.width, contentView.frame.height), style: .Grouped)
         
         singleSelectionTableView.backgroundColor   =   .clearColor()
         singleSelectionTableView.delegate = self
         singleSelectionTableView.dataSource = self
-        singleSelectionTableView.tintColor  =  UIColor.blueColor()
-        singleSelectionTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "questionOptionsCellIdentifier")
+        singleSelectionTableView.registerNib(UINib.init(nibName: "SingleSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "questionOptionsCellIdentifier")
         
-        contentView.backgroundColor =   .clearColor()
+        singleSelectionTableView.layoutIfNeeded()
+        singleSelectionTableView.clipsToBounds = true
         contentView.addSubview(singleSelectionTableView)
         
         
+    }
+    
+    
+    
+    func multiSelectionView() {
+        self.view.layoutIfNeeded()
+        multiSelectionTableView   =   UITableView.init(frame: CGRectMake(0, 0, contentView.frame.width, contentView.frame.height), style: .Grouped)
+        
+        multiSelectionTableView.backgroundColor   =     .clearColor()
+        multiSelectionTableView.delegate          =     self
+        multiSelectionTableView.dataSource        =     self
+        multiSelectionTableView.registerNib(UINib.init(nibName: "SingleSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "questionOptionsCellIdentifier")
+        multiSelectionTableView.allowsMultipleSelection = true
+        multiSelectionTableView.layoutIfNeeded()
+        
+        
+        contentView.addSubview(multiSelectionTableView)
+        
+        multiSelectionTableView.hidden = true
+        multiSelectionTableView.alpha    = 0.0
+    }
+    
+    
+    func movableCellTableView() {
+        self.view.layoutIfNeeded()
+        movableTableView   =   UITableView.init(frame: CGRectMake(0, 0, contentView.frame.width, contentView.frame.height), style: .Grouped)
+        
+        movableTableView.backgroundColor   =     .clearColor()
+        movableTableView.delegate          =     self
+        movableTableView.dataSource        =     self
+        movableTableView.registerNib(UINib.init(nibName: "SingleSelectionTableViewCell", bundle: nil), forCellReuseIdentifier: "questionOptionsCellIdentifier")
+        movableTableView.setEditing(true, animated: true)
+        movableTableView.layoutIfNeeded()
+        
+        
+        contentView.addSubview(movableTableView)
+        
+        movableTableView.hidden = true
+        movableTableView.alpha    = 0.0
+    }
+    
+    
+    
+    func imagedOptionsTableView() {
+        self.contentView.layoutIfNeeded()
+        imageTableView   =   UITableView.init(frame: CGRectMake(0, 0, contentView.frame.width, contentView.frame.height), style: .Grouped)
+        
+        imageTableView.backgroundColor   =     .clearColor()
+        imageTableView.delegate          =     self
+        imageTableView.dataSource        =     self
+        imageTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "imagedSelectionTableViewCellIdentifier")
+        imageTableView.layoutIfNeeded()
+        
+        contentView.clipsToBounds    =   true
+        contentView.addSubview(imageTableView)
+        
+        imageTableView.hidden = true
+        imageTableView.alpha    = 0.0
+    }
+    
+    
+    
+    
+    //MARK: UISlider Action
+    
+    func sliderChanged() {
+        enableSubmitButton()
     }
     
     
@@ -216,47 +359,107 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("questionOptionsCellIdentifier")
+        
+        let cellIdentifier  =   (tableView == imageTableView) ? "imagedSelectionTableViewCellIdentifier" : "questionOptionsCellIdentifier"
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
         
         
-        if cell == nil
-        {
-            cell = UITableViewCell.init(style: .Subtitle, reuseIdentifier: "questionOptionsCellIdentifier")
+        cell!.selectionStyle = UITableViewCellSelectionStyle.None
+        
+        
+        if tableView == multiSelectionTableView {
+            cell!.textLabel?.text    =   multiSelectionData[indexPath.row] as? String
+        }
+        else if tableView == imageTableView {
+            
+            let imageView   =   UIImageView.init(image: UIImage.init(named: "snapdeal"))
+            imageView.frame =   CGRectMake(0, 10, self.view.frame.width - 50, 80)
+            imageView.contentMode   =   .ScaleAspectFit
+            imageView.center    =   (cell?.contentView.center)!
+            
+            cell?.backgroundView    =   imageView
+            
+        }
+        else {
+            cell!.textLabel?.text   =   "EveryDay \(indexPath.row)"
         }
         
-        cell!.backgroundColor   =   .clearColor()
-        cell!.textLabel?.text   =   "EveryDay"
-        cell!.textLabel?.textColor  =   .whiteColor()
-        cell!.tintColor         =   .orangeColor()
+        cell!.backgroundColor    =   .clearColor()
+        cell!.textLabel?.textColor   =   .whiteColor()
+        
+        
         
         return cell!
     }
     
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if let oldIndex = tableView.indexPathForSelectedRow {
-            tableView.cellForRowAtIndexPath(oldIndex)?.accessoryType = .None
-        }
-        tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        return indexPath
+        enableSubmitButton()
+        
+        if tableView == self.singleSelectionTableView || tableView == self.multiSelectionTableView {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                cell.accessoryType = .Checkmark
+            }
+        }
+        else if tableView == self.imageTableView {
+            let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+            selectedCell.backgroundView!.layer.borderColor = UIColor.redColor().CGColor
+            selectedCell.backgroundView?.layer.borderWidth  =   5
+        }
+        
+    }
+
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if tableView == self.singleSelectionTableView || tableView == self.multiSelectionTableView {
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+                
+                print("Index is \(indexPath.row)")
+                cell.accessoryType = .None
+            }
+        }
+        else if tableView == self.imageTableView {
+            let selectedCell:UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+            selectedCell.backgroundView!.layer.borderColor = UIColor.clearColor().CGColor
+        }
+    
     }
     
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableView == imageTableView {
+            return 100
+        }
+        else {
+            return 44
+        }
+    }
     
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-//            cell.accessoryType = .Checkmark
-//            
-//        }
-//        
-//    }
-//    
-//    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-//        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-//            cell.accessoryType = .None
-//        }
-//    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        
+        return .None
+    }
+    
+    
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if tableView == self.movableTableView {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    
+    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+        // nothing
+        
+        enableSubmitButton()
+    }
     
     
     

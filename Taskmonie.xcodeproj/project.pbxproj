@@ -14,7 +14,6 @@
 		672044AA1D99FFBD00F1DB96 /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672044A91D99FFBD00F1DB96 /* AudioPlayerViewController.swift */; };
 		6729DD131D7F34F200D9BA4B /* ProfileSideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6729DD121D7F34F200D9BA4B /* ProfileSideMenuViewController.swift */; };
 		6729DD151D7F36C500D9BA4B /* ProfileIntroViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6729DD141D7F36C500D9BA4B /* ProfileIntroViewCell.swift */; };
-		673AAC651DD102A60058C1DA /* SingleCheckmarkQuestion.xib in Resources */ = {isa = PBXBuildFile; fileRef = 673AAC641DD102A60058C1DA /* SingleCheckmarkQuestion.xib */; };
 		673AAC681DD1071E0058C1DA /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673AAC671DD1071E0058C1DA /* SurveyViewController.swift */; };
 		67636C211DCDBC6D00B9003C /* RechargeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67636C201DCDBC6D00B9003C /* RechargeView.swift */; };
 		67636C231DCDBC7A00B9003C /* RechargeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67636C221DCDBC7A00B9003C /* RechargeView.xib */; };
@@ -26,6 +25,8 @@
 		67715F401DAE17CE00D7E6C3 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67715F3F1DAE17CE00D7E6C3 /* WalletTableViewCell.swift */; };
 		677B326D1DC7895D00C315C8 /* NewVideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677B326C1DC7895D00C315C8 /* NewVideoPlayerViewController.swift */; };
 		677F79D31D81F287007C27BF /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677F79D21D81F287007C27BF /* SignupViewController.swift */; };
+		6783D5291DD4E86B0075C8B1 /* SingleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6783D5271DD4E86B0075C8B1 /* SingleSelectionTableViewCell.swift */; };
+		6783D52A1DD4E86B0075C8B1 /* SingleSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6783D5281DD4E86B0075C8B1 /* SingleSelectionTableViewCell.xib */; };
 		678955A51DBCC8D700C62D4C /* BasicProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678955A41DBCC8D700C62D4C /* BasicProfileView.swift */; };
 		678955A71DBCC8E600C62D4C /* BasicProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 678955A61DBCC8E600C62D4C /* BasicProfileView.xib */; };
 		678955A91DBDB25700C62D4C /* RedeemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678955A81DBDB25700C62D4C /* RedeemViewController.swift */; };
@@ -95,7 +96,6 @@
 		672044A91D99FFBD00F1DB96 /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		6729DD121D7F34F200D9BA4B /* ProfileSideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSideMenuViewController.swift; sourceTree = "<group>"; };
 		6729DD141D7F36C500D9BA4B /* ProfileIntroViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileIntroViewCell.swift; sourceTree = "<group>"; };
-		673AAC641DD102A60058C1DA /* SingleCheckmarkQuestion.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleCheckmarkQuestion.xib; sourceTree = "<group>"; };
 		673AAC671DD1071E0058C1DA /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		67636C201DCDBC6D00B9003C /* RechargeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RechargeView.swift; sourceTree = "<group>"; };
 		67636C221DCDBC7A00B9003C /* RechargeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RechargeView.xib; sourceTree = "<group>"; };
@@ -107,6 +107,8 @@
 		67715F3F1DAE17CE00D7E6C3 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		677B326C1DC7895D00C315C8 /* NewVideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewVideoPlayerViewController.swift; sourceTree = "<group>"; };
 		677F79D21D81F287007C27BF /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		6783D5271DD4E86B0075C8B1 /* SingleSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		6783D5281DD4E86B0075C8B1 /* SingleSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		678955A41DBCC8D700C62D4C /* BasicProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicProfileView.swift; sourceTree = "<group>"; };
 		678955A61DBCC8E600C62D4C /* BasicProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicProfileView.xib; sourceTree = "<group>"; };
 		678955A81DBDB25700C62D4C /* RedeemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RedeemViewController.swift; sourceTree = "<group>"; };
@@ -198,8 +200,9 @@
 		673AAC661DD102B00058C1DA /* Survey */ = {
 			isa = PBXGroup;
 			children = (
-				673AAC641DD102A60058C1DA /* SingleCheckmarkQuestion.xib */,
 				673AAC671DD1071E0058C1DA /* SurveyViewController.swift */,
+				6783D5271DD4E86B0075C8B1 /* SingleSelectionTableViewCell.swift */,
+				6783D5281DD4E86B0075C8B1 /* SingleSelectionTableViewCell.xib */,
 			);
 			name = Survey;
 			sourceTree = "<group>";
@@ -507,7 +510,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				673AAC651DD102A60058C1DA /* SingleCheckmarkQuestion.xib in Resources */,
 				67BC49641DB3CDBE00D7B785 /* CalendarCellView.xib in Resources */,
 				67F493561D9FFC9400E5F2AC /* ProfileQuestionView.xib in Resources */,
 				67636C2B1DCE4A7900B9003C /* VoucherTableViewCell.xib in Resources */,
@@ -516,6 +518,7 @@
 				67E760251D7C38A7006B95C0 /* Assets.xcassets in Resources */,
 				678955A71DBCC8E600C62D4C /* BasicProfileView.xib in Resources */,
 				67636C231DCDBC7A00B9003C /* RechargeView.xib in Resources */,
+				6783D52A1DD4E86B0075C8B1 /* SingleSelectionTableViewCell.xib in Resources */,
 				67E760231D7C38A7006B95C0 /* Main.storyboard in Resources */,
 				67CD228D1DA19C1000D7F596 /* QuestionCollectionCell.xib in Resources */,
 			);
@@ -590,6 +593,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6783D5291DD4E86B0075C8B1 /* SingleSelectionTableViewCell.swift in Sources */,
 				67D42E941DBFF58200D05513 /* TransferBankFormViewController.swift in Sources */,
 				67636C211DCDBC6D00B9003C /* RechargeView.swift in Sources */,
 				678B4E271D8D151900D7AFCD /* LoginViewController.swift in Sources */,

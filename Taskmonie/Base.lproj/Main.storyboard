@@ -338,24 +338,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Earned" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vy0-83-tiS">
-                                <rect key="frame" x="256.5" y="50" width="87" height="21"/>
+                                <rect key="frame" x="256.5" y="90" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rs. 5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zei-SO-bIG">
-                                <rect key="frame" x="279.5" y="89" width="41" height="21"/>
+                                <rect key="frame" x="279.5" y="129" width="41" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="1" green="0.84435606882194358" blue="0.039533028571359763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Reward has been added to wallet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj3-yl-tZF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Reward has been added to wallet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bj3-yl-tZF">
                                 <rect key="frame" x="50" y="289.5" width="500" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.31209485357222833" green="1" blue="0.15421030296450111" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward ID: xxx-xxx-xx" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRW-Qn-hWE">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reward ID: xxx-xxx-xx" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRW-Qn-hWE">
                                 <rect key="frame" x="50" y="318.5" width="500" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -366,7 +366,7 @@
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="eRW-Qn-hWE" secondAttribute="trailing" constant="30" id="2ZI-Va-q88"/>
                             <constraint firstItem="zei-SO-bIG" firstAttribute="centerX" secondItem="YZo-Rd-3Qd" secondAttribute="centerX" id="2li-B4-Klw"/>
-                            <constraint firstItem="Vy0-83-tiS" firstAttribute="top" secondItem="KFz-FU-0eP" secondAttribute="bottom" constant="30" id="8Bd-7l-mxJ"/>
+                            <constraint firstItem="Vy0-83-tiS" firstAttribute="top" secondItem="KFz-FU-0eP" secondAttribute="bottom" constant="70" id="8Bd-7l-mxJ"/>
                             <constraint firstItem="bj3-yl-tZF" firstAttribute="leading" secondItem="YZo-Rd-3Qd" secondAttribute="leadingMargin" constant="30" id="K7k-XO-0hk"/>
                             <constraint firstItem="zei-SO-bIG" firstAttribute="top" secondItem="Vy0-83-tiS" secondAttribute="bottom" constant="18" id="RVy-z1-Ddd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bj3-yl-tZF" secondAttribute="trailing" constant="30" id="Vp8-rM-a9m"/>
@@ -820,6 +820,9 @@
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <state key="normal" title="Next">
                                     <color key="titleColor" red="0.3120948536" green="1" blue="0.15421030299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <state key="disabled">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-P7-5eM">
