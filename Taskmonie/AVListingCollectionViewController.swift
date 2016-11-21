@@ -18,6 +18,9 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
     
     var isAudio: Bool = false
     var avArray: NSArray = []
+    
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +39,10 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
         let urlString: String
         
         if isAudio {
-            urlString = "http://ec2-52-66-131-85.ap-south-1.compute.amazonaws.com/api/tasks/all/audio_clip"
+            urlString = "http://ec2-35-154-7-228.ap-south-1.compute.amazonaws.com/api/tasks/all/audio_clip"
         }
         else {
-            urlString = "http://ec2-52-66-131-85.ap-south-1.compute.amazonaws.com/api/tasks/all/video_clip"
+            urlString = "http://ec2-35-154-7-228.ap-south-1.compute.amazonaws.com/api/tasks/all/video_clip"
         }
         
         
@@ -48,28 +51,28 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
             indicatorView.stopAnimating()
             
             
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-                print(JSON["data"])
-                
-                if let tempArray = JSON["data"] as? NSArray {
+            
+            switch response.result {
+            case .Success:
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                    print(JSON["data"])
                     
-                    self.avArray = tempArray
-                    
-                    self.collectionView?.reloadData()
+                    if let tempArray = JSON["data"] as? NSArray {
+                        
+                        self.avArray = tempArray
+                        
+                        
+                        self.collectionView?.reloadData()
+                    }
                 }
-//                avArray = JSON["data"]
-//
-//                self.tableView.reloadData()
+                
+            case .Failure(let error):
+                print(error)
             }
+            
+            
         }
-        
-        
-        
-        
-        
-        
-        
         
         
     }
@@ -143,9 +146,39 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
     
     func detailButtonTapped(button: UIButton) {
         
+        let detailVC    =   self.storyboard?.instantiateViewControllerWithIdentifier("videoDetailPopupVC") as! VideoDetailPopupViewController
+        let cell =  button.superview?.superview?.superview as! AVCollectionViewCell
+        print(cell)
         
-        let detailVC    =   self.storyboard?.instantiateViewControllerWithIdentifier("videoDetailPopupVC")
-        let popupView = STPopupController.init(rootViewController: detailVC!)
+        let indexPath   =   self.collectionView?.indexPathForCell(cell)
+        
+        let dictionary = avArray[indexPath!.item]
+        
+        if let about_company = dictionary["about_company"] as? String {
+            detailVC.aboutCompanyString =   about_company
+        }
+        
+        if let about_brand = dictionary["about_brand"] as? String {
+            detailVC.aboutBrandString =   about_brand
+        }
+        
+        if let brand_logo = dictionary["brand_logo"] as? String {
+            detailVC.brandImageString =   brand_logo
+        }
+        
+        let brand_logo = (dictionary["company_name"] as? String)! + "-" + (dictionary["brand_name"] as? String)!
+        
+        detailVC.taskName = brand_logo
+        
+//        if let company_name = dictionary["company_name"] as? String {
+//            detailVC.brandImageString =   company_name
+//        }
+        
+        
+        
+        
+        
+        let popupView = STPopupController.init(rootViewController: detailVC)
         popupView.containerView.layer.cornerRadius = 6.0;
         popupView.containerView.layer.borderWidth = 1;
         popupView.containerView.layer.borderColor = UIColor.whiteColor().CGColor
@@ -181,13 +214,10 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        let dictionary = avArray[indexPath.item]
-        
+        let dictionary  =   avArray[indexPath.item]
         let urlString   =   dictionary.valueForKeyPath("meta.file") as? String
         
-//        let playerVC    =   (isAudio) ? AudioPlayerViewController() : VideoPlayerViewController()
-//        playerVC.url
-        
+        /*
         if isAudio {
             let audioPlayerVC   =   AudioPlayerViewController()
             audioPlayerVC.urlString =   urlString!
@@ -198,7 +228,10 @@ class AVListingCollectionViewController: UICollectionViewController, UICollectio
             videoPlayerVC.urlString =   urlString!
             self.navigationController?.pushViewController(videoPlayerVC, animated: true)
         }
+        */
         
+        let youtubeVC   =   self.storyboard?.instantiateViewControllerWithIdentifier("youtubeVCIdentifier")
+        self.navigationController?.pushViewController(youtubeVC!, animated: true)
         
         
     }

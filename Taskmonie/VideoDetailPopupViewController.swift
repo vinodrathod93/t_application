@@ -12,11 +12,16 @@ class VideoDetailPopupViewController: UITableViewController {
 
     var selectedIndex:Int = -1
     
+    var aboutCompanyString: String = ""
+    var aboutBrandString: String = ""
+    var brandImageString: String = ""
+    var taskName: String = ""
+    
     
     convenience init(){
         self.init()
         
-        self.title = "Amazon";
+        self.title = taskName;
 //        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextBtnDidTap)];
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
@@ -26,7 +31,7 @@ class VideoDetailPopupViewController: UITableViewController {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.title = "Amazon";
+        self.title = taskName;
         self.contentSizeInPopup = CGSizeMake(300, 400);
         self.landscapeContentSizeInPopup = CGSizeMake(400, 200);
     }
@@ -42,6 +47,9 @@ class VideoDetailPopupViewController: UITableViewController {
         
         
         self.tableView.backgroundColor = .blackColor()
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,15 +75,9 @@ class VideoDetailPopupViewController: UITableViewController {
 
         // Configure the cell...
         
-        cell.nameLabel?.text = "Company Details"
-        
-//        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//        rotationAnimation.fromValue = 0.0
-//        
-//        rotationAnimation.duration = 1.0
-//        
-//        
-//        let image   =   UIImage.init(named: "expand")
+        cell.nameLabel?.text = (indexPath.row == 0) ? "Company Details" : "Brand Details"
+        cell.textView.text = (indexPath.row == 0) ? aboutCompanyString : aboutBrandString
+        cell.textView.textColor = .whiteColor()
         
         if selectedIndex == indexPath.row {
             
@@ -84,19 +86,13 @@ class VideoDetailPopupViewController: UITableViewController {
             })
             
             
-//            rotationAnimation.toValue = M_PI/2
-//            cell.expandImageView.image = UIImage(CGImage: (image?.CGImage)!, scale: 1.0, orientation: .DownMirrored)
-            
         }
         else {
             UIView.animateWithDuration(0.25, animations:{
                 cell.expandImageView.transform = CGAffineTransformMakeRotation(0)
             })
             
-//            rotationAnimation.toValue = 0
-//            cell.expandImageView.image = UIImage(CGImage: (image?.CGImage)!, scale: 1.0, orientation: .LeftMirrored)
         }
-//        cell.expandImageView.layer.addAnimation(rotationAnimation, forKey: nil)
         
 
         return cell

@@ -10,6 +10,7 @@ import UIKit
 
 class VideoDetailTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var expandImageView: UIImageView!
     override func awakeFromNib() {

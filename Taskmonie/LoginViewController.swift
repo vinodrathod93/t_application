@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController {
 
@@ -83,12 +84,58 @@ class LoginViewController: UIViewController {
     
     
     func loginTapped(button: AnyObject) {
-        let homeVC  =   storyboard?.instantiateViewControllerWithIdentifier("rootTMTabBarController")
         
         
-        let appDelegate =   UIApplication.sharedApplication().delegate as! AppDelegate
         
-        appDelegate.window?.rootViewController = homeVC
+        
+        
+        let loginString =  "http://ec2-35-154-7-228.ap-south-1.compute.amazonaws.com/api/auth/login"
+        
+        
+        let indicatorView   =   UIActivityIndicatorView.init(activityIndicatorStyle: .WhiteLarge)
+        indicatorView.center    =   self.view.center
+        indicatorView.startAnimating()
+        indicatorView.hidesWhenStopped = true
+        self.view.addSubview(indicatorView)
+        
+        
+        let parameter   =   ["email" : self.emailTextfield.text!, "password" : self.passwordTextfield.text!]
+        
+        Alamofire.request(.POST, loginString, parameters: parameter, encoding: .URL, headers: nil).responseJSON { (response) in
+            
+            indicatorView.stopAnimating()
+            
+            
+            
+            switch response.result {
+                case .Success:
+                    if let JSON =   response.result.value {
+                        print("\(JSON)")
+                        
+                        
+                        let  statusCode =   JSON["code"] as! Int
+                        
+                        if statusCode == 200 {
+                            let homeVC  =   self.storyboard?.instantiateViewControllerWithIdentifier("rootTMTabBarController")
+                            
+                            
+                            let appDelegate =   UIApplication.sharedApplication().delegate as! AppDelegate
+                            
+                            appDelegate.window?.rootViewController = homeVC
+                        }
+                        else {
+                            
+                        }
+                        
+                        
+                    }
+                    
+                case .Failure(let error):
+                    print(error)
+            }
+            
+        }
+        
         
     }
     

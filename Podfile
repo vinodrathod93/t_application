@@ -14,6 +14,8 @@ pod 'TagListView', '~> 1.0'
 pod 'JTAppleCalendar'
 pod 'STPopup'
 pod 'Alamofire', '~> 3.5'
+pod 'SDWebImage', '~>3.8'
+pod "youtube-ios-player-helper", "~> 0.1.4"
 end
 
 target 'TaskmonieTests' do
