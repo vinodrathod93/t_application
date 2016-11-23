@@ -16,6 +16,16 @@ pod 'STPopup'
 pod 'Alamofire', '~> 3.5'
 pod 'SDWebImage', '~>3.8'
 pod "youtube-ios-player-helper", "~> 0.1.4"
+pod "XCDYouTubeKit", "~> 2.5"
+
+pod 'FrameAccessor', '~> 1.3.2'
+pod 'MKFoundationKit/NSArray', '~> 1.2.3'
+pod 'CupertinoYankee'
+pod 'UIColor-HexString'
+pod 'Masonry'
+
+pod 'PNChart'
+
 end
 
 target 'TaskmonieTests' do

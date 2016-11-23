@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6706533E1DE37D0C00E54F7B /* XCDYouTubeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6706533D1DE37D0C00E54F7B /* XCDYouTubeKit.framework */; };
+		670653461DE4C1AC00E54F7B /* GKBarGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 6706533F1DE4C1AC00E54F7B /* GKBarGraph.m */; };
+		670653471DE4C1AC00E54F7B /* GKBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 670653401DE4C1AC00E54F7B /* GKBar.m */; };
+		670653481DE4C1AC00E54F7B /* UIColor+GraphKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 670653411DE4C1AC00E54F7B /* UIColor+GraphKit.m */; };
+		6706534B1DE4C3DB00E54F7B /* PollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6706534A1DE4C3DB00E54F7B /* PollViewController.swift */; };
+		6706534D1DE4CC8700E54F7B /* PNChart.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6706534C1DE4CC8700E54F7B /* PNChart.framework */; };
 		670CF91C1DA5DC18004D9D45 /* TagListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670CF91B1DA5DC18004D9D45 /* TagListTableViewCell.swift */; };
 		67170B631D95BECD0076209F /* VideoPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67170B621D95BECD0076209F /* VideoPlayerViewController.swift */; };
 		67170B671D95BFA90076209F /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67170B661D95BFA90076209F /* AVKit.framework */; };
@@ -92,6 +98,16 @@
 		397F208BB29F1208E5D012AF /* Pods-TaskmonieTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TaskmonieTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TaskmonieTests/Pods-TaskmonieTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6368209A22160250B3F4845B /* Pods_TaskmonieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TaskmonieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6419A98D5328CC89A5E14E26 /* Pods-Taskmonie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taskmonie.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taskmonie/Pods-Taskmonie.release.xcconfig"; sourceTree = "<group>"; };
+		6706533D1DE37D0C00E54F7B /* XCDYouTubeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCDYouTubeKit.framework; path = "Pods/../build/Debug-iphoneos/XCDYouTubeKit/XCDYouTubeKit.framework"; sourceTree = "<group>"; };
+		6706533F1DE4C1AC00E54F7B /* GKBarGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKBarGraph.m; sourceTree = "<group>"; };
+		670653401DE4C1AC00E54F7B /* GKBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GKBar.m; sourceTree = "<group>"; };
+		670653411DE4C1AC00E54F7B /* UIColor+GraphKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+GraphKit.m"; sourceTree = "<group>"; };
+		670653421DE4C1AC00E54F7B /* GKBarGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKBarGraph.h; sourceTree = "<group>"; };
+		670653431DE4C1AC00E54F7B /* UIColor+GraphKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+GraphKit.h"; sourceTree = "<group>"; };
+		670653441DE4C1AC00E54F7B /* GKBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GKBar.h; sourceTree = "<group>"; };
+		670653451DE4C1AC00E54F7B /* GraphKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphKit.h; sourceTree = "<group>"; };
+		6706534A1DE4C3DB00E54F7B /* PollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollViewController.swift; sourceTree = "<group>"; };
+		6706534C1DE4CC8700E54F7B /* PNChart.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PNChart.framework; path = "Pods/../build/Debug-iphoneos/PNChart/PNChart.framework"; sourceTree = "<group>"; };
 		670CF91B1DA5DC18004D9D45 /* TagListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListTableViewCell.swift; sourceTree = "<group>"; };
 		67170B621D95BECD0076209F /* VideoPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayerViewController.swift; sourceTree = "<group>"; };
 		67170B641D95BF160076209F /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -175,6 +191,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6706534D1DE4CC8700E54F7B /* PNChart.framework in Frameworks */,
+				6706533E1DE37D0C00E54F7B /* XCDYouTubeKit.framework in Frameworks */,
 				67170B691D95BFBF0076209F /* AVFoundation.framework in Frameworks */,
 				67170B671D95BFA90076209F /* AVKit.framework in Frameworks */,
 				DCCA7676C79FF46091C45443 /* Pods_Taskmonie.framework in Frameworks */,
@@ -200,6 +218,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		670653491DE4C1B300E54F7B /* GraphKit */ = {
+			isa = PBXGroup;
+			children = (
+				6706533F1DE4C1AC00E54F7B /* GKBarGraph.m */,
+				670653401DE4C1AC00E54F7B /* GKBar.m */,
+				670653411DE4C1AC00E54F7B /* UIColor+GraphKit.m */,
+				670653421DE4C1AC00E54F7B /* GKBarGraph.h */,
+				670653431DE4C1AC00E54F7B /* UIColor+GraphKit.h */,
+				670653441DE4C1AC00E54F7B /* GKBar.h */,
+				670653451DE4C1AC00E54F7B /* GraphKit.h */,
+			);
+			name = GraphKit;
+			sourceTree = "<group>";
+		};
 		673AAC661DD102B00058C1DA /* Survey */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,6 +390,7 @@
 			children = (
 				679383861D945ED3005399DD /* iCarousel */,
 				678B4E351D8DB88100D7AFCD /* TPKeyboardAvoiding */,
+				670653491DE4C1B300E54F7B /* GraphKit */,
 				67E7601D1D7C38A7006B95C0 /* AppDelegate.swift */,
 				67E760211D7C38A7006B95C0 /* Main.storyboard */,
 				67E760261D7C38A7006B95C0 /* LaunchScreen.storyboard */,
@@ -370,6 +403,7 @@
 				67BC495E1DB3CAF300D7B785 /* Wallet */,
 				67D28F0A1DBF06A1004A1811 /* Redeem  */,
 				673AAC661DD102B00058C1DA /* Survey */,
+				6706534A1DE4C3DB00E54F7B /* PollViewController.swift */,
 				67E56D0E1D848B7C0079148F /* TMTextField.swift */,
 				67F0B7471D7CB1E30089949C /* Helper.swift */,
 				67E760291D7C38A7006B95C0 /* Info.plist */,
@@ -412,6 +446,8 @@
 		DB42B23686389AFEF7873A5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6706534C1DE4CC8700E54F7B /* PNChart.framework */,
+				6706533D1DE37D0C00E54F7B /* XCDYouTubeKit.framework */,
 				67170B681D95BFBF0076209F /* AVFoundation.framework */,
 				67170B661D95BFA90076209F /* AVKit.framework */,
 				67170B641D95BF160076209F /* MediaPlayer.framework */,
@@ -720,6 +756,7 @@
 				67BC49671DB3D03200D7B785 /* AnimationClass.swift in Sources */,
 				67F0B7461D7CA67A0089949C /* HomeTableViewCell.swift in Sources */,
 				679383851D945ECA005399DD /* iCarousel.m in Sources */,
+				670653471DE4C1AC00E54F7B /* GKBar.m in Sources */,
 				678955AF1DBDCE9500C62D4C /* VideoDetailTableViewCell.swift in Sources */,
 				678B4E311D8DB87400D7AFCD /* UIScrollView+TPKeyboardAvoidingAdditions.m in Sources */,
 				67D28F0C1DBF0711004A1811 /* TransferRewardView.swift in Sources */,
@@ -729,6 +766,7 @@
 				677F79D31D81F287007C27BF /* SignupViewController.swift in Sources */,
 				67715F401DAE17CE00D7E6C3 /* WalletTableViewCell.swift in Sources */,
 				673AAC681DD1071E0058C1DA /* SurveyViewController.swift in Sources */,
+				6706534B1DE4C3DB00E54F7B /* PollViewController.swift in Sources */,
 				67E56D0F1D848B7C0079148F /* TMTextField.swift in Sources */,
 				67BC49621DB3CDB200D7B785 /* CalendarCellView.swift in Sources */,
 				67F0B7481D7CB1E30089949C /* Helper.swift in Sources */,
@@ -746,8 +784,10 @@
 				678955A51DBCC8D700C62D4C /* BasicProfileView.swift in Sources */,
 				6764A9A91DD86F1300030026 /* YoutubeViewController.swift in Sources */,
 				67F493541D9FF1D700E5F2AC /* UserProfileViewController.swift in Sources */,
+				670653481DE4C1AC00E54F7B /* UIColor+GraphKit.m in Sources */,
 				678955AD1DBDBBDF00C62D4C /* VideoDetailPopupViewController.swift in Sources */,
 				67636C2A1DCE4A7900B9003C /* VoucherTableViewCell.swift in Sources */,
+				670653461DE4C1AC00E54F7B /* GKBarGraph.m in Sources */,
 				67F0B7401D7C96870089949C /* AVListingCollectionViewController.swift in Sources */,
 				67E7601E1D7C38A7006B95C0 /* AppDelegate.swift in Sources */,
 				67F0B7421D7C96BA0089949C /* AVCollectionViewCell.swift in Sources */,
@@ -896,6 +936,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XCDYouTubeKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/PNChart",
+				);
 				INFOPLIST_FILE = Taskmonie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taskmonie.Taskmonie;
@@ -911,6 +956,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/XCDYouTubeKit",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/PNChart",
+				);
 				INFOPLIST_FILE = Taskmonie/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.taskmonie.Taskmonie;

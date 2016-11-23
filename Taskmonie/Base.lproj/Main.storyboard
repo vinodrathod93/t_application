@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="GBs-a7-GLb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="uep-Cx-Cwr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -451,6 +451,71 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQE-hm-HO2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2145" y="2177"/>
+        </scene>
+        <!--Poll View Controller-->
+        <scene sceneID="SB1-CZ-0Gn">
+            <objects>
+                <viewController storyboardIdentifier="pollQuestionVC" id="uep-Cx-Cwr" customClass="PollViewController" customModule="Taskmonie" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mWq-vs-sI6"/>
+                        <viewControllerLayoutGuide type="bottom" id="EgE-XD-zfa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Sul-Ya-p2r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="787-Q5-2hb" customClass="PNBarChart">
+                                <rect key="frame" x="0.0" y="93" width="600" height="367"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Who will win the World Cup 2019 ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQW-ld-5sJ">
+                                <rect key="frame" x="20" y="20" width="560" height="65"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="7ax-DZ-pal"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Remaining" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxC-P7-fa2">
+                                <rect key="frame" x="20" y="490" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:76:97" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3b-1g-FwI">
+                                <rect key="frame" x="20" y="519" width="560" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.3120948536" green="1" blue="0.15421030299999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="787-Q5-2hb" firstAttribute="top" secondItem="wQW-ld-5sJ" secondAttribute="bottom" constant="8" id="5V5-Tv-GR2"/>
+                            <constraint firstAttribute="trailing" secondItem="f3b-1g-FwI" secondAttribute="trailing" constant="20" id="7t8-S1-u1g"/>
+                            <constraint firstAttribute="trailing" secondItem="787-Q5-2hb" secondAttribute="trailing" id="Fgn-jf-qaW"/>
+                            <constraint firstAttribute="trailing" secondItem="wQW-ld-5sJ" secondAttribute="trailing" constant="20" id="Kzv-E6-hcU"/>
+                            <constraint firstItem="wQW-ld-5sJ" firstAttribute="top" secondItem="mWq-vs-sI6" secondAttribute="bottom" id="TvH-vJ-qZb"/>
+                            <constraint firstItem="787-Q5-2hb" firstAttribute="leading" secondItem="Sul-Ya-p2r" secondAttribute="leading" id="U81-lb-vhc"/>
+                            <constraint firstItem="f3b-1g-FwI" firstAttribute="leading" secondItem="Sul-Ya-p2r" secondAttribute="leading" constant="20" id="Wn6-9V-Ffe"/>
+                            <constraint firstItem="f3b-1g-FwI" firstAttribute="top" secondItem="DxC-P7-fa2" secondAttribute="bottom" constant="8" id="YBM-Zf-32g"/>
+                            <constraint firstItem="DxC-P7-fa2" firstAttribute="top" secondItem="787-Q5-2hb" secondAttribute="bottom" constant="30" id="iUF-Xc-NtC"/>
+                            <constraint firstItem="wQW-ld-5sJ" firstAttribute="leading" secondItem="Sul-Ya-p2r" secondAttribute="leading" constant="20" id="uGT-Bz-GwL"/>
+                            <constraint firstItem="DxC-P7-fa2" firstAttribute="trailing" secondItem="Sul-Ya-p2r" secondAttribute="trailingMargin" id="uYp-6b-BO7"/>
+                            <constraint firstItem="EgE-XD-zfa" firstAttribute="top" secondItem="f3b-1g-FwI" secondAttribute="bottom" constant="60" id="w80-FY-aF8"/>
+                            <constraint firstItem="DxC-P7-fa2" firstAttribute="leading" secondItem="Sul-Ya-p2r" secondAttribute="leadingMargin" id="wZo-dD-06l"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="graphView" destination="787-Q5-2hb" id="xlT-B5-dcP"/>
+                        <outlet property="questionLabel" destination="wQW-ld-5sJ" id="nOL-ZW-1WL"/>
+                        <outlet property="timerLabel" destination="f3b-1g-FwI" id="JNB-w7-e2D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VDd-rE-zSq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3021" y="2262"/>
         </scene>
         <!--Wallet Statement View Controller-->
         <scene sceneID="G5a-xs-VZh">
@@ -1389,7 +1454,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VsM-Ty-202">
                                 <rect key="frame" x="0.0" y="64" width="600" height="2"/>
                             </progressView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhD-wj-KEG" customClass="YTPlayerView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NhD-wj-KEG">
                                 <rect key="frame" x="0.0" y="66" width="600" height="534"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
