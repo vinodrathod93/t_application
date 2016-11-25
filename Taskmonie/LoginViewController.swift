@@ -122,6 +122,11 @@ class LoginViewController: UIViewController {
                             let appDelegate =   UIApplication.sharedApplication().delegate as! AppDelegate
                             
                             appDelegate.window?.rootViewController = homeVC
+                            
+                            
+                            saveUser(JSON["data"] as! NSDictionary)
+                            
+                            
                         }
                         else {
                             
@@ -142,6 +147,16 @@ class LoginViewController: UIViewController {
     
 }
 
+
+func saveUser(data: NSDictionary) {
+    let defaults    =   NSUserDefaults.standardUserDefaults()
+    defaults.setObject(data["email"], forKey: "email")
+    defaults.setObject(data["id"], forKey: "id")
+    defaults.setObject(data["name"], forKey: "name");
+    defaults.setObject(data["phone_number"], forKey: "phone")
+    
+    defaults.synchronize()
+}
 
 
 

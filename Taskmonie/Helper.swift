@@ -44,13 +44,13 @@ func imageFromColor(color: UIColor) -> UIImage {
     UIGraphicsBeginImageContext(rect.size)
     
     let context =   UIGraphicsGetCurrentContext()
-    CGContextSetFillColorWithColor(context, color.CGColor)
-    CGContextFillRect(context, rect)
+    CGContextSetFillColorWithColor(context!, color.CGColor)
+    CGContextFillRect(context!, rect)
     
     let image = UIGraphicsGetImageFromCurrentImageContext()
     UIGraphicsEndImageContext()
     
-    return image
+    return image!
     
 }
 
@@ -60,7 +60,7 @@ func changeColor(color: UIColor, ofImage: UIImage) -> UIImage? {
     UIGraphicsBeginImageContextWithOptions(ofImage.size, false, ofImage.scale)
     color.set()
     image.drawInRect(CGRect(x: 0, y: 0, width: ofImage.size.width, height: ofImage.size.height))
-    image = UIGraphicsGetImageFromCurrentImageContext()
+    image = UIGraphicsGetImageFromCurrentImageContext()!
     UIGraphicsEndImageContext()
     return image
 }

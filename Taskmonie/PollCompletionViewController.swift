@@ -1,29 +1,53 @@
 //
-//  VideoCompletionViewController.swift
+//  PollCompletionViewController.swift
 //  Taskmonie
 //
-//  Created by Vinod Rathod on 24/10/16.
+//  Created by Vinod Rathod on 25/11/16.
 //  Copyright © 2016 Linkcube. All rights reserved.
 //
 
 import UIKit
 
-class VideoCompletionViewController: UIViewController {
+class PollCompletionViewController: UIViewController {
 
+    @IBOutlet weak var successMessageLabel: UILabel!
+    @IBOutlet weak var trackingIDLabel: UILabel!
+    @IBOutlet weak var rewardLabel: UILabel!
+    
+    var answeredChoice: String = ""
+    var trackingID: String = ""
+    var rewardString: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
+        if !answeredChoice.isEmpty {
+            successMessageLabel.text    =   "Your Answer '\(answeredChoice)' is Successfully Recorded"
+        }
+        
+        
+        if !trackingID.isEmpty {
+            trackingIDLabel.text        =   "Tracking ID: \(trackingID)"
+        }
+        
+        
+        if !rewardString.isEmpty {
+            rewardLabel.text            =   convertToRupees(rewardString)
+        }
+        
+        
+        
         var tempVCs: Array =   (self.navigationController?.viewControllers)!
         
         for viewcontroller in tempVCs {
-            if viewcontroller.isKindOfClass(VideoPlayerViewController) {
+            if viewcontroller.isKindOfClass(PollViewController) {
                 
                 let index = tempVCs.indexOf(viewcontroller)
                 tempVCs.removeAtIndex(index!)
             }
-            else if viewcontroller.isKindOfClass(SurveyViewController) {
+            else if viewcontroller.isKindOfClass(InformationViewController) {
                 let index = tempVCs.indexOf(viewcontroller)
                 tempVCs.removeAtIndex(index!)
             }

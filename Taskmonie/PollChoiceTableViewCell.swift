@@ -1,20 +1,18 @@
 //
-//  WalletTableViewCell.swift
+//  PollChoiceTableViewCell.swift
 //  Taskmonie
 //
-//  Created by Vinod Rathod on 12/10/16.
+//  Created by Sachin Ahirrao on 11/24/16.
 //  Copyright © 2016 Linkcube. All rights reserved.
 //
 
 import UIKit
 
-class WalletTableViewCell: UITableViewCell {
+class PollChoiceTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var brandLabel: UILabel!
-    @IBOutlet weak var transDetailLabel: UILabel!
-    @IBOutlet weak var amountLabel: UILabel!
-    @IBOutlet weak var dayWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var choiceLabel: UILabel!
+    @IBOutlet weak var currentStatus: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

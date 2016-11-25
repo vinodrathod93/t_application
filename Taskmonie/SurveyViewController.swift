@@ -90,7 +90,7 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         labelAnimation.timingFunction   =   CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
         labelAnimation.startProgress    =   0
         labelAnimation.endProgress      =   1
-        labelAnimation.delegate =   self
+//        labelAnimation.delegate =   self
         labelAnimation.type =   kCATransitionFade
         labelAnimation.fillMode =   kCAFillModeBoth
         labelAnimation.duration =   0.33
@@ -103,7 +103,7 @@ class SurveyViewController: UIViewController, UITableViewDelegate, UITableViewDa
         transition.timingFunction   =   CAMediaTimingFunction.init(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.startProgress    =   0
         transition.endProgress      =   1
-        transition.delegate         =   self
+//        transition.delegate         =   self
         transition.type             =   kCATransitionPush
         transition.subtype          =   kCATransitionFromRight
         transition.duration         =   0.4

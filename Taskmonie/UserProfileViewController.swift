@@ -93,7 +93,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         
         
         if userSelectedIndex == 0 {
-            let profileView = NSBundle.mainBundle().loadNibNamed("BasicProfileView", owner: self, options: nil).last as! BasicProfileView
+            let profileView = NSBundle.mainBundle().loadNibNamed("BasicProfileView", owner: self, options: nil)!.last as! BasicProfileView
             profileView.tag    =   2016
             
             profileView.frame  =   self.tableview.frame
@@ -201,7 +201,7 @@ class UserProfileViewController: UIViewController, UITableViewDelegate, UITableV
         if index == 0 {
             
             if self.view.viewWithTag(2016) == nil {
-                let profileView = NSBundle.mainBundle().loadNibNamed("BasicProfileView", owner: self, options: nil).last as! BasicProfileView
+                let profileView = NSBundle.mainBundle().loadNibNamed("BasicProfileView", owner: self, options: nil)!.last as! BasicProfileView
                 profileView.tag    =   2016
                 
                 profileView.frame  =   self.tableview.frame

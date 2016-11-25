@@ -134,6 +134,16 @@ class HomeViewController: UITableViewController,iCarouselDataSource, iCarouselDe
             
             self.navigationController?.pushViewController(surveyViewVC, animated: true)
         }
+        else if indexPath.row == 5 {
+            
+            let pollsListVC = self.storyboard?.instantiateViewControllerWithIdentifier("AVListingVC") as? AVListingCollectionViewController
+            pollsListVC?.title =   "Polls"
+            pollsListVC?.isPolls    =   true
+            
+            
+            self.navigationController?.pushViewController(pollsListVC!, animated: true)
+            
+        }
     }
     
     

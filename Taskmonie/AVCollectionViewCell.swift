@@ -10,6 +10,7 @@ import UIKit
 
 class AVCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var completedLabel: UILabel!
     @IBOutlet weak var PreviewImageView: UIImageView!
     @IBOutlet weak var ContentName: UILabel!
     @IBOutlet weak var contentEarningAmount: UILabel!

@@ -40,6 +40,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabBarItemAppearance.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.whiteColor()], forState: .Normal)
         
         
+        let defaults    =   NSUserDefaults.standardUserDefaults()
+        
+        if (defaults.objectForKey("id") == nil) {
+            let storyboard  =   UIStoryboard.init(name: "Main", bundle: nil)
+            let loginVC     =   storyboard.instantiateViewControllerWithIdentifier("loginScreenVC")
+            
+            window?.rootViewController  =   loginVC
+            
+        }
+        
         
         return true
     }

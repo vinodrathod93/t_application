@@ -92,7 +92,7 @@ class RedeemViewController: UIViewController {
     
     
     func drawRechargeView() {
-        rechargeView = NSBundle.mainBundle().loadNibNamed("RechargeView", owner: self, options: nil).last as! RechargeView
+        rechargeView = NSBundle.mainBundle().loadNibNamed("RechargeView", owner: self, options: nil)!.last as! RechargeView
         rechargeView.frame  =   CGRectMake(0, CGRectGetMaxY(segmentedView.frame), self.view.frame.width, self.view.frame.height-CGRectGetMaxY(segmentedView.frame))
         rechargeView.tag    =   3001
         
@@ -114,7 +114,7 @@ class RedeemViewController: UIViewController {
     }
     
     func drawVoucherView() {
-        let voucherView = NSBundle.mainBundle().loadNibNamed("VoucherView", owner: self, options: nil).last as! VoucherView
+        let voucherView = NSBundle.mainBundle().loadNibNamed("VoucherView", owner: self, options: nil)!.last as! VoucherView
         voucherView.frame  =   CGRectMake(0, CGRectGetMaxY(segmentedView.frame), self.view.frame.width, self.view.frame.height-CGRectGetMaxY(segmentedView.frame))
         voucherView.tag    =   3003
         

@@ -57,7 +57,6 @@ class YoutubeViewController: UIViewController {
         player  =   XCDYouTubeVideoPlayerViewController.init(videoIdentifier: videoID)
         player.presentInView(self.playerView)
         player.moviePlayer.controlStyle =   .None
-//        player.moviePlayer.
         player.moviePlayer.play()
         
         
@@ -82,28 +81,6 @@ class YoutubeViewController: UIViewController {
     func hideControl() {
 //        NSNotificationCenter.defaultCenter().removeObserver(self, name: MPMoviePlayerLoadStateDidChangeNotification, object: player.moviePlayer)
         
-//        for(id views in [[player view] subviews]){
-//            for(id subViews in [views subviews]){
-//                for (id controlView in [subViews subviews]){
-//                    if ( [controlView isKindOfClass:NSClassFromString(@"MPInlineVideoOverlay")] ) {
-//                        [controlView setAlpha:0.0];
-//                        [controlView setHidden:YES];
-//                    }  
-//                }  
-//            }  
-//        }
-        
-        
-        for views in player.view.subviews {
-            for subview in views.subviews {
-                for controlView in subview.subviews {
-                    if controlView.isKindOfClass(NSClassFromString("MPInlineVideoOverlay")!) {
-                        controlView.alpha   =   0.0
-                        controlView.hidden  =   true
-                    }
-                }
-            }
-        }
         
     }
     
